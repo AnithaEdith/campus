@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: campus
+  datasource:
+    url: jdbc:mysql://localhost:3306/jstudyplanner?useSSL=false
+    username: root
+
+server:
+  port: 8090
