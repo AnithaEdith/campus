@@ -4,6 +4,7 @@ import com.jstudyplanner.domain.Campus;
 import com.jstudyplanner.service.implementation.CampusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,8 +37,8 @@ public class CampusController {
         return campuses;
     }
 
-    @RequestMapping(value = "/getCampusesByStatus", method = RequestMethod.GET)
-    public  @ResponseBody List<Campus> getCampusesByStatus(boolean enabled) {
+    @RequestMapping(value = "/getCampusesByStatus/enabled/{enabledflag}", method = RequestMethod.GET)
+    public  @ResponseBody List<Campus> getCampusesByStatus( @PathVariable boolean enabled) {
         List<Campus> campuses=new ArrayList<Campus>();
         Iterable<Campus> allCampuses = campusService.getCampusesByStatus(enabled);
         campuses= collectlist(allCampuses);
@@ -55,14 +56,14 @@ public class CampusController {
         campusService.delete(campus);
     }
 
-    @RequestMapping("/getCampusById")
-    public Campus getCampusById(Long id) {
+    @RequestMapping("/getCampusById/{id}")
+    public Campus getCampusById(@PathVariable Long id) {
 
         return campusService.getCampusById(id);
     }
 
-    @RequestMapping("/getCampusByCode")
-    public Campus getCampusByCode(String code) {
+    @RequestMapping("/getCampusByCode/{code}")
+    public Campus getCampusByCode(@PathVariable String code) {
         return campusService.getCampusByCode(code);
     }
 
