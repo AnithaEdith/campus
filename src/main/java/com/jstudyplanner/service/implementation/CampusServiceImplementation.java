@@ -32,8 +32,8 @@ public class CampusServiceImplementation implements CampusService {
 
     @Override
     public Campus getCampusByCode(String code) {
-       // return campusRepo.getCampusByCode(code);
-        return null;
+        return campusRepo.findCampusByCode(code);
+    //    return null;
     }
 
     @Override
