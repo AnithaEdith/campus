@@ -1,35 +1,37 @@
 package com.jstudyplanner.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-
-/**
- * Domain class that represents the Campus entity.
- * @author oleg, oleglukin@yahoo.com
- */
-public class Campus implements Serializable, DomainObject {
+@Entity
+@Table(name = "Campus")
+public class Campus implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	// ----------------------------------------
-	// Attributes
-	// ----------------------------------------
-	private Long id;
-	private String code;
-	private String title;
-	private Byte enabled;
-	private String address;
-	private String phone;
-	private String description;
-	
-	
-	// ----------------------------------------
-	// Constructors
-	// ----------------------------------------
-	public Campus() {}
 
-	public Campus(Long id, String code, String title, Byte enabled, 
-			String address,	String phone, String description) {
-		super();
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id")
+	private Long id;
+
+	@Column(name="code")
+	private String code;
+
+	@Column(name="title")
+	private String title;
+
+	@Column(name="enabled")
+	private Byte enabled;
+
+	@Column(name="address")
+	private String address;
+
+	@Column(name="phone")
+	private String phone;
+
+	@Column(name="description")
+	private String description;
+
+	public Campus(Long id, String code, String title, Byte enabled, String address, String phone, String description) {
 		this.id = id;
 		this.code = code;
 		this.title = title;
@@ -38,11 +40,10 @@ public class Campus implements Serializable, DomainObject {
 		this.phone = phone;
 		this.description = description;
 	}
-	
-	
-	// ----------------------------------------
-	// Getters & Setters
-	// ----------------------------------------
+
+	public Campus() {
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -98,35 +99,17 @@ public class Campus implements Serializable, DomainObject {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	/**
-	 * Return description preview getting first n characters.
-	 * @param numberOfCharacters to display
-	 * @return description preview
-	 */
-	public String getDescriptionPreview(int numberOfCharacters) {
-		if (description.length() > numberOfCharacters) {
-			return description.substring(0, numberOfCharacters);
-		} else {
-			return description;
-		}
-	}
 
-	/**
-	 * Compares two campuses. Campuses are considered equal if they have the same
-	 * code, and title. Id, description, phone and address are not compared.
-	 * @param domainObject - campus to compare
-	 * @return true if equal, false if not
-	 */
-	public boolean equals(DomainObject domainObject) {
-		Campus campus = (Campus) domainObject;
-		if (campus.getCode().equals(this.getCode())
-			&& campus.getTitle().equals(this.getTitle())
-			) {
-			return true;
-		} else {
-			return false;
-		}
+	@Override
+	public String toString() {
+		return "Campus{" +
+				"id=" + id +
+				", code='" + code + '\'' +
+				", title='" + title + '\'' +
+				", enabled=" + enabled +
+				", address='" + address + '\'' +
+				", phone='" + phone + '\'' +
+				", description='" + description + '\'' +
+				'}';
 	}
 }
