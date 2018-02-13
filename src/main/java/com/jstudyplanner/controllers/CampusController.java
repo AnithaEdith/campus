@@ -2,6 +2,8 @@ package com.jstudyplanner.controllers;
 
 import com.jstudyplanner.domain.Campus;
 import com.jstudyplanner.service.implementation.CampusService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/campusService")
 public class CampusController {
 
+    Logger logger= LoggerFactory.getLogger(this.getClass());
     @Autowired
     private CampusService campusService;
 
@@ -62,9 +65,16 @@ public class CampusController {
         return campusService.getCampusById(id);
     }
 
-    @RequestMapping("/getCampusByCode/{code}")
-    public Campus getCampusByCode(@PathVariable String code) {
-        return campusService.getCampusByCode(code);
+    @RequestMapping(value="/getCampusByCode/{code}", method = RequestMethod.GET)
+    public  @ResponseBody Campus getCampusByCode(@PathVariable String code) {
+        List<Campus> campuses=new ArrayList<Campus>();
+
+        logger.info("inside getCampusByCode" + code);
+        Iterable<Campus> allCampuses = campusService.getCampusByCode(code);
+        campuses= collectlist(allCampuses);
+        logger.info("after  getCampusByCode" + campuses.size());
+
+        return campuses.get(0);
     }
 
 

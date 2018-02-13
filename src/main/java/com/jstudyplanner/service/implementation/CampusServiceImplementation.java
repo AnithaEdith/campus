@@ -2,11 +2,17 @@ package com.jstudyplanner.service.implementation;
 
 import com.jstudyplanner.repository.CampusDao;
 import com.jstudyplanner.domain.Campus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CampusServiceImplementation implements CampusService {
+    Logger logger= LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private CampusDao campusRepo;
 
@@ -31,8 +37,10 @@ public class CampusServiceImplementation implements CampusService {
     }
 
     @Override
-    public Campus getCampusByCode(String code) {
-        return campusRepo.findCampusByCode(code);
+    public Iterable<Campus> getCampusByCode(String code) {
+        logger.info(" inside Campus Service" + code);
+        Iterable<Campus> campusList=campusRepo.findByCode(code);
+        return campusList;
     //    return null;
     }
 

@@ -11,7 +11,7 @@ public interface CampusService {
 	public void save(Campus campus);
 	public void delete(Campus campus);
 	public Campus getCampusById(Long id);
-	public Campus getCampusByCode(String code);
+	public Iterable<Campus> getCampusByCode(String code);
 	public Iterable<Campus> getAllCampuses();
 	public Iterable<Campus> getCampusesByStatus(boolean enabled);
 }
