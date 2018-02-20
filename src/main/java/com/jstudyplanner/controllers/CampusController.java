@@ -24,12 +24,6 @@ public class CampusController {
     @Autowired
     private CampusService campusService;
 
-/*
-    @Autowired
-    public CampusController(CampusService campusService) {
-        this.campusService = campusService;
-    }
-*/
 
     @RequestMapping(value = "/getAllCampuses", method = RequestMethod.GET)
     public @ResponseBody
