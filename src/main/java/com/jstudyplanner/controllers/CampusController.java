@@ -26,7 +26,7 @@ public class CampusController {
 
     @RequestMapping(value = "/health", method = RequestMethod.GET)
     public @ResponseBody
-    List<Campus> getAllCampuses() {
+    List<Campus> healthcheck() {
         List<Campus> campuses=new ArrayList<Campus>();
         Iterable<Campus> allCampuses = campusService.getAllCampuses();
         campuses= collectlist(allCampuses);
