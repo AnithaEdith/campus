@@ -24,6 +24,14 @@ public class CampusController {
     @Autowired
     private CampusService campusService;
 
+    @RequestMapping(value = "/health", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Campus> getAllCampuses() {
+        List<Campus> campuses=new ArrayList<Campus>();
+        Iterable<Campus> allCampuses = campusService.getAllCampuses();
+        campuses= collectlist(allCampuses);
+        return campuses;
+    }
 
     @RequestMapping(value = "/getAllCampuses", method = RequestMethod.GET)
     public @ResponseBody
