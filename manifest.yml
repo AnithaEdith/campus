@@ -9,3 +9,5 @@ applications:
   - jstudy-config
   - service-registry
   - jstudy-mysql
+  routes:
+   - route: campus.apps.cumuluslabs.io
