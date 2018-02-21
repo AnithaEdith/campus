@@ -24,7 +24,7 @@ public class CampusController {
     @Autowired
     private CampusService campusService;
 
-    @RequestMapping(value = "/health", method = RequestMethod.GET)
+    @RequestMapping(value = "/healthcheck", method = RequestMethod.GET)
     public @ResponseBody
     List<Campus> healthcheck() {
         List<Campus> campuses=new ArrayList<Campus>();
